@@ -121,7 +121,8 @@ class MainActivity2 : AppCompatActivity() {
             if (binding2.etDescription.text!!.isEmpty()) {
                 binding2.etDescriptionBox.requestFocus()
                 binding2.etDescriptionBox.error = "Please enter task description"
-            } else {
+            }
+            if(!binding2.etTask.text!!.isEmpty() && !binding2.etDate.text!!.isEmpty() && !binding2.etDescription.text!!.isEmpty()){
                 GlobalScope.launch {
                     database.theProjectDao().insertTask(
                         TheProject(
