@@ -4,17 +4,19 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.hitesh.snohassigment.TheProjectDatabase
+import com.hitesh.snohassigment.adapter.TaskAdapter
 import com.hitesh.snohassigment.databinding.FragmentHomeBinding
 
 class HomeFragment : Fragment() {
 
     private var _binding: FragmentHomeBinding? = null
 
-    // This property is only valid between onCreateView and
-    // onDestroyView.
+    lateinit var database: TheProjectDatabase
+
     private val binding get() = _binding!!
 
     override fun onCreateView(
@@ -22,16 +24,22 @@ class HomeFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val homeViewModel =
-            ViewModelProvider(this).get(HomeViewModel::class.java)
 
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-        val textView: TextView = binding.textHome
-        homeViewModel.text.observe(viewLifecycleOwner) {
-            textView.text = it
+        database = TheProjectDatabase.getDatabase(requireActivity())
+
+        lateinit var taskAdapter: TaskAdapter
+        val rvTask: RecyclerView = binding.rvTask
+        database.theProjectDao().getTask().observe(viewLifecycleOwner) {
+            taskAdapter = TaskAdapter(it)
+            rvTask.adapter = taskAdapter
         }
+
+        rvTask.layoutManager = LinearLayoutManager(activity)
+        rvTask.setHasFixedSize(true)
+
         return root
     }
 

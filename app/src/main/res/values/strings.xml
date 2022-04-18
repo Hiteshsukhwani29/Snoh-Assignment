@@ -11,4 +11,10 @@
     <string name="menu_home">Home</string>
     <string name="menu_gallery">Gallery</string>
     <string name="menu_slideshow">Slideshow</string>
+    <string name="task">Task</string>
+    <string name="date">Date</string>
+    <string name="description">Description</string>
+    <string name="save">Save</string>
+    <string name="hitesh_sukhwani">Hitesh Sukhwani</string>
+    <string name="hiteshsukhwani29_gmail_com">Hiteshsukhwani29@gmail.com</string>
 </resources>

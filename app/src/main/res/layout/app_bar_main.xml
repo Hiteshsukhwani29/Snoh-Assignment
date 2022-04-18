@@ -29,7 +29,9 @@
         android:layout_gravity="bottom|end"
         android:layout_marginEnd="@dimen/fab_margin"
         android:layout_marginBottom="16dp"
-        app:color="@android:color/white"
-        app:srcCompat="@android:drawable/ic_input_add" />
+        android:backgroundTint="@color/blue"
+        app:tint="@color/white"
+        app:srcCompat="@drawable/ic_add"
+        android:contentDescription="Add task" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
